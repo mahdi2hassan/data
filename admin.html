@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="لوحة تحكم Online Plus Sites">
+  <title>Online Plus Sites - لوحة التحكم</title>
+  <link rel="shortcut icon" href="./nn.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.21.6/css/uikit-rtl.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+    }
+    .admin-panel {
+      background-color: #f8f8f8;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    .product-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <img src="./nn.png" alt="شعار مكتبة بلس" class="logo">
+    <h1>Online Plus Sites</h1>
+    <a href="index.html" class="uk-button uk-button-secondary">العودة للصفحة الرئيسية</a>
+  </header>
+
+  <main class="uk-container">
+    <div class="admin-panel">
+      <h2>إدارة المنتجات</h2>
+      <form id="product-form">
+        <div class="uk-margin">
+          <label for="product-name">اسم المنتج:</label>
+          <input class="uk-input" type="text" id="product-name" required>
+        </div>
+        <div class="uk-margin">
+          <label for="product-image">رابط الصورة:</label>
+          <input class="uk-input" type="text" id="product-image" placeholder="https://example.com/image.jpg" required>
+        </div>
+        <div class="uk-margin">
+          <label for="product-description">الوصف:</label>
+          <textarea class="uk-textarea" id="product-description" required></textarea>
+        </div>
+        <input type="hidden" id="product-index">
+        <button type="submit" class="uk-button uk-button-primary" id="form-button">إضافة المنتج</button>
+      </form>
+
+      <h3>قائمة المنتجات</h3>
+      <div id="product-list"></div>
+    </div>
+  </main>
+
+  <script>
+    let products = JSON.parse(localStorage.getItem('products')) || [];
+
+    function renderProducts() {
+      const productList = document.getElementById('product-list');
+      productList.innerHTML = '';
+      products.forEach((product, index) => {
+        const productItem = `
+          <div class="product-item">
+            <div>
+              <strong>${product.name}</strong><br>
+              <img src="${product.image}" alt="${product.name}" style="width: 50px; height: 50px; object-fit: cover;">
+              <p>${product.description}</p>
+            </div>
+            <div>
+              <button class="uk-button uk-button-primary uk-button-small" onclick="editProduct(${index})">تعديل</button>
+              <button class="uk-button uk-button-danger uk-button-small" onclick="deleteProduct(${index})">حذف</button>
+            </div>
+          </div>`;
+        productList.innerHTML += productItem;
+      });
+    }
+
+    document.getElementById('product-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('product-name').value;
+      const image = document.getElementById('product-image').value;
+      const description = document.getElementById('product-description').value;
+      const index = document.getElementById('product-index').value;
+
+      if (index === '') {
+        products.push({ name, image, description });
+      } else {
+        products[index] = { name, image, description };
+      }
+
+      localStorage.setItem('products', JSON.stringify(products));
+      renderProducts();
+      resetForm();
+    });
+
+    function editProduct(index) {
+      const product = products[index];
+      document.getElementById('product-name').value = product.name;
+      document.getElementById('product-image').value = product.image;
+      document.getElementById('product-description').value = product.description;
+      document.getElementById('product-index').value = index;
+      document.getElementById('form-button').textContent = 'تعديل المنتج';
+    }
+
+    function deleteProduct(index) {
+      products.splice(index, 1);
+      localStorage.setItem('products', JSON.stringify(products));
+      renderProducts();
+    }
+
+    function resetForm() {
+      document.getElementById('product-form').reset();
+      document.getElementById('product-index').value = '';
+      document.getElementById('form-button').textContent = 'إضافة المنتج';
+    }
+
+    renderProducts();
+  </script>
+</body>
+</html>

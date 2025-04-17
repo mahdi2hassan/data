@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="مكتبة بلس - منتجات مختارة بعناية من أجلك">
-  <title>مكتبة بلس - منتجات مختارة</title>
+  <meta name="description" content="مكتبة بلس - منتجات مكتبية مختارة بعناية">
+  <title>مكتبة بلس</title>
   <link rel="shortcut icon" href="./nn.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.21.6/css/uikit-rtl.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <link rel="stylesheet" href="style.css">
   <style>
     body {
-      font-family: 'Cairo', sans-serif;
+      font-family: 'Tajawal', sans-serif;
     }
     .download-style {
       border-radius: 20px !important;
@@ -29,21 +29,137 @@
     .product-card:hover {
       transform: scale(1.05);
     }
-    .admin-panel {
-      display: none;
-      background-color: #f8f8f8;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
   <header class="header">
     <img src="./nn.png" alt="شعار مكتبة بلس" class="logo">
-    <button class="uk-button uk-button-secondary" onclick="toggleAdminPanel()">لوحة التحكم</button>
+    <a href="admin.html" class="uk-button uk-button-secondary">لوحة التحكم</a>
   </header>
 
   <main class="main-card uk-container">
     <h1 class="title">منتجات مختارة بعناية من أجلك</h1>
     <div class="decorative-border"></div>
+
+    <!-- شبكة المنتجات -->
+    <div class="uk-grid uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid id="product-list">
+      <!-- سيتم إضافة المنتجات هنا ديناميكيًا -->
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div id="socials-container" class="uk-text-center">
+      <a href="https://www.facebook.com/ma7di2hassan/" aria-label="فيسبوك">
+        <img src="./icons8-facebook-50.png" alt="حساب فيسبوك" class="icon">
+      </a>
+      <a href="https://www.instagram.com/mahdi2hassan/" aria-label="إنستغرام">
+        <img src="./icons8-instagram-logo-94_optimized.png" alt="حساب إنستغرام" class="icon">
+      </a>
+      <a href="https://api.whatsapp.com/send?phone=201007586279&text" aria-label="واتساب">
+        <img src="./icons8-whatsapp-50_optimized.png" alt="حساب واتساب" class="icon">
+      </a>
+      <a href="https://ipn.eg/S/mahdihassan/instapay/51rzLz" aria-label="إنستاباي">
+        <img src="./com.egyptianbanks.instapay.icon_.2022-12-14-21-37-26.png" alt="إنستاباي" class="icon">
+      </a>
+      <a href="tel:*9*7*01007586279*250#" aria-label="فودافون كاش">
+        <img src="./vod.png" alt="فودافون كاش" class="icon">
+      </a>
+      <a href="tel:01153652279" aria-label="اتصالات كاش">
+        <img src="./eg.png" alt="اتصالات كاش" class="icon">
+      </a>
+      <a href="tel:01558870907#" aria-label="أورانج كاش">
+        <img src="./12_optimized.png" alt="()
+
+
+System: أورانج كاش" class="icon">
+      </a>
+    </div>
+    <div class="decorative-border"></div>
+  </footer>
+
+  <script>
+    // المنتجات الافتراضية
+    const defaultProducts = [
+      {
+        name: "قلم حبر أزرق",
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+        description: "قلم حبر أزرق عالي الجودة للكتابة اليومية."
+      },
+      {
+        name: "دفتر ملاحظات",
+        image: "https://images.unsplash.com/photo-1517849841033-87dab69d1390?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+        description: "دفتر ملاحظات بحجم A5، مثالي للطلاب."
+      },
+      {
+        name: "آلة حاسبة علمية",
+        image: "https://images.unsplash.com/photo-1587145820272-3f08778c653f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+        description: "آلة حاسبة علمية للحسابات المتقدمة."
+      },
+      {
+        name: "مكتب خشبي",
+        image: "https://images.unsplash.com/photo-1595521337617-5ad9634ebea0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+        description: "مكتب خشبي أنيق للمكاتب المنزلية."
+      },
+      {
+        name: "كرسي مكتبي",
+        image: "https://images.unsplash.com/photo-1600585153490-0f29a6b33c6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+        description: "كرسي مكتبي مريح بتصميم مريح."
+      }
+    ];
+
+    // تحميل البطاقة
+    function downloadCard(elementId) {
+      const previewElement = document.getElementById(elementId);
+      const originalClasses = previewElement.className;
+
+      previewElement.classList.add('download-style');
+      const textElement = previewElement.querySelector('.uk-card-body');
+      if (textElement) textElement.classList.add('text-bg');
+
+      setTimeout(() => {
+        html2canvas(previewElement, {
+          useCORS: true,
+          scale: 2,
+          allowTaint: false,
+          logging: true,
+          backgroundColor: null
+        }).then(canvas => {
+          const link = document.createElement('a');
+          link.download = 'product-card.png';
+          link.href = canvas.toDataURL('image/png', 1.0);
+          link.click();
+
+          previewElement.className = originalClasses;
+          if (textElement) textElement.classList.remove('text-bg');
+        });
+      }, 100);
+    }
+
+    // عرض المنتجات
+    function renderProducts() {
+      const productList = document.getElementById('product-list');
+      productList.innerHTML = '';
+      const products = JSON.parse(localStorage.getItem('products')) || defaultProducts;
+      products.forEach((product, index) => {
+        const productCard = `
+          <div>
+            <div class="uk-card uk-card-default product-card" id="product-${index}">
+              <div class="uk-card-media-top">
+                <img src="${product.image}" alt="${product.name}" style="width: 100%; height: 200px; object-fit: cover;">
+              </div>
+              <div class="uk-card-body">
+                <h3 class="uk-card-title">${product.name}</h3>
+                <p>${product.description}</p>
+                <button class="uk-button uk-button-primary" onclick="downloadCard('product-${index}')">تحميل البطاقة</button>
+              </div>
+            </div>
+          </div>`;
+        productList.innerHTML += productCard;
+      });
+    }
+
+    // تحميل المنتجات عند بدء الصفحة
+    renderProducts();
+  </script>
+</body>
+</html>
