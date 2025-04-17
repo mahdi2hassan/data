@@ -2,158 +2,48 @@
 <html dir="rtl" lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  <title>مكتبة بلس  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="مكتبة بلس - منتجات مختارة بعناية من أجلك">
+  <title>مكتبة بلس - منتجات مختارة</title>
   <link rel="shortcut icon" href="./nn.png" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/css/uikit-rtl.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.21.6/css/uikit-rtl.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header class="header">
-    <img src="./nn.png" alt="مكتبة بلس" class="logo">
-  </header>
-
-  <main class="main-card uk-container">
-    <h1 class="title">منتجات مختارة بعناية من اجلك</h1>
-    
-    <div class="decorative-border"></div>
-
-    
-  <footer class="footer">
-    <div id="socials-container">
-      <img
-        src="./icons8-facebook-50.png"
-        alt="My facebook profile"
-        class="icon"
-        onclick="location.href='https://www.facebook.com/ma7di2hassan/'"
-      />
-      <img
-        src="./icons8-instagram-logo-94_optimized.png"
-        alt="My insta profile"
-        class="icon"
-        onclick="location.href='https://www.instagram.com/mahdi2hassan/'"
-      />
-      <img
-      src="./icons8-whatsapp-50_optimized.png"
-      alt="My whats App acc"
-      class="icon"
-      onclick="location.href='https://api.whatsapp.com/send?phone=201007586279&text'"
-    />
-          <img
-    src="./vod.png"
-    alt="VodafoneCache"
-    class="icon"
-    onclick="location.href='tel:*9*7*01007586279*250#'"
-    />
-        <img
-    src="./eg.png"
-    alt="egCache"
-    class="icon"
-    onclick="location.href='tel:01153652279'"
-    />
- <img
-    src="./12_optimized.png"
-    alt="OrangeCache"
-    class="icon"
-    onclick="location.href='tel:01558870907#'"
-    />
-    <img
-    src="./com.egyptianbanks.instapay.icon_.2022-12-14-21-37-26.png"
-    alt="InstaPay"
-    class="icon"
-    onclick="location.href='https://ipn.eg/S/mahdihassan/instapay/51rzLz'"
-    />
-
-    <div class="decorative-border"></div>
-  
- 
-  
-    </div>
-  <footer class="footer">
-    <div id="socials-container">
-      <img
-        src="./icons8-facebook-50.png"
-        alt="My facebook profile"
-        class="icon"
-        onclick="location.href='https://www.facebook.com/ma7di2hassan/'"
-      />
-      <img
-        src="./icons8-instagram-logo-94_optimized.png"
-        alt="My insta profile"
-        class="icon"
-        onclick="location.href='https://www.instagram.com/mahdi2hassan/'"
-      />
-      <img
-      src="./icons8-whatsapp-50_optimized.png"
-      alt="My whats App acc"
-      class="icon"
-      onclick="location.href='https://api.whatsapp.com/send?phone=201007586279&text'"
-    />
-    
- 
-    <img
-    src="./com.egyptianbanks.instapay.icon_.2022-12-14-21-37-26.png"
-    alt="InstaPay"
-    class="icon"
-    onclick="location.href='https://ipn.eg/S/mahdihassan/instapay/51rzLz'"
-    />
-      <img
-    src="./vod.png"
-    alt="VodafoneCache"
-    class="icon"
-    onclick="location.href='tel:*9*7*01007586279*250#'"
-    />
-        
   <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+    }
     .download-style {
       border-radius: 20px !important;
       overflow: hidden !important;
     }
-    
     .text-bg {
       background-color: rgba(0, 0, 0, 0.5) !important;
       padding: 10px !important;
       border-radius: 10px !important;
     }
-    </style>
-    
-    <script>
-    function downloadCard() {
-      const previewElement = document.getElementById('card-content');
-      const originalClasses = previewElement.className;
-      
-      previewElement.classList.add('download-style');
-      document.getElementById('card-text').classList.add('text-bg');
-    
-      setTimeout(() => {
-        html2canvas(previewElement, {
-          useCORS: true,
-          scale: 2,
-          allowTaint: false,
-          logging: true,
-          backgroundColor: null
-        }).then(canvas => {
-          const link = document.createElement('a');
-          link.download = 'ramadan-card.png';
-          link.href = canvas.toDataURL('image/png', 1.0);
-          link.click();
-    
-          previewElement.className = originalClasses;
-          document.getElementById('card-text').classList.remove('text-bg');
-        });
-      }, 100);
+    .product-card {
+      transition: transform 0.3s;
     }
-    </script>
-  <script src="main.js"></script>
-</body>
-</html>
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+    .admin-panel {
+      display: none;
+      background-color: #f8f8f8;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <img src="./nn.png" alt="شعار مكتبة بلس" class="logo">
+    <button class="uk-button uk-button-secondary" onclick="toggleAdminPanel()">لوحة التحكم</button>
+  </header>
 
-
-
-
-
-
-
-
-
+  <main class="main-card uk-container">
+    <h1 class="title">منتجات مختارة بعناية من أجلك</h1>
+    <div class="decorative-border"></div>
