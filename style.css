@@ -507,6 +507,11 @@ color: whitesmoke;
     width: 100%;
   }
  }
+ .payment-methods .icon {
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+} 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
   .tek{
